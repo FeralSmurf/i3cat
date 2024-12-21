@@ -7,23 +7,33 @@
 
 set $mod Mod4
 
-# Nord color definitions
-set $nord0  #2E3440
-set $nord1  #3B4252
-set $nord2  #434C5E
-set $nord3  #4C566A
-set $nord4  #D8DEE9
-set $nord5  #E5E9F0
-set $nord6  #ECEFF4
-set $nord7  #8FBCBB
-set $nord8  #88C0D0
-set $nord9  #81A1C1
-set $nord10 #5E81AC
-set $nord11 #BF616A
-set $nord12 #D08770
-set $nord13 #EBCB8B
-set $nord14 #A3BE8C
-set $nord15 #B48EAD
+# Catppuccin color definitions
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
 
 # Font for window titles
 font pango:DejaVuSansMNerdFont-Regular 8
@@ -107,9 +117,6 @@ bindsym $mod+space focus mode_toggle
 # Focus parent
 bindsym $mod+a focus parent
 
-# Show all running apps
-bindsym Mod4+o exec --no-startup-id wmctrl -l | awk '{$3=""} {print $0}' | dmenu -i -l 10 | awk '{print $1}' | xargs -r wmctrl -i -a
-
 # Workspaces
 set $ws1 "1"
 set $ws2 "2"
@@ -157,6 +164,8 @@ gaps outer -10
 smart_gaps on
 smart_borders on
 
+
+
 # Resize mode
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
@@ -171,30 +180,30 @@ mode "resize" {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+i mode "default"
+        bindsym $mod+r mode "default"
 }
 
 bindsym $mod+d mode "resize"
 
 # Window colors
-client.focused          $nord8   $nord3  $nord6  $nord8  $nord8
-client.focused_inactive $nord3   $nord1  $nord4  $nord3  $nord3
-client.unfocused       $nord3   $nord1  $nord4  $nord3  $nord3
-client.urgent          $nord11  $nord11 $nord6  $nord11 $nord11
-client.placeholder     $nord3   $nord1  $nord4  $nord3  $nord3
-client.background      $nord0
+client.focused          $lavender $base $text  $rosewater $lavender
+client.focused_inactive $overlay0 $base $text  $rosewater $overlay0
+client.unfocused       $overlay0 $base $text  $rosewater $overlay0
+client.urgent          $peach    $base $peach $overlay0  $peach
+client.placeholder     $overlay0 $base $text  $overlay0  $overlay0
+client.background      $base
 
 # Bar
 bar {
         status_command i3status
         colors {
-                background         $nord0
-                statusline         $nord4
-                focused_statusline $nord4
-                focused_separator  $nord0
-                focused_workspace  $nord3  $nord8  $nord6
-                active_workspace   $nord3  $nord3  $nord6
-                inactive_workspace $nord0  $nord0  $nord4
-                urgent_workspace   $nord3  $nord11 $nord6
+                background         $base
+                statusline         $text
+                focused_statusline $text
+                focused_separator  $base
+                focused_workspace  $base  $mauve    $crust
+                active_workspace   $base  $surface2 $text
+                inactive_workspace $base  $base     $text
+                urgent_workspace   $base  $red      $crust
         }
 }
